@@ -6,7 +6,7 @@ MODEL_FILE_ID = "17I0sKjrGgW4EGhtv2Q0eB5rVp9x85nX0"
 ZIP_PATH = "models.zip"
 
 if not os.path.exists(ZIP_PATH):
-    print("Downloading models from Google Drive using gdown...")
+    print("Downloading models from Google Drive...")
     gdown.download(
         url=f"https://drive.google.com/uc?id={MODEL_FILE_ID}",
         output=ZIP_PATH,
@@ -14,9 +14,13 @@ if not os.path.exists(ZIP_PATH):
     )
 
 if not os.path.exists("models"):
-    print("Extracting models from zip...")
+    print("Extracting models...")
     with zipfile.ZipFile(ZIP_PATH, "r") as zip_ref:
         zip_ref.extractall(".")
+
+if os.path.exists(ZIP_PATH):
+    os.remove(ZIP_PATH)
+
 
 
 
@@ -53,4 +57,5 @@ def predict_fraud(request: FraudRequest):
 
     if len(data) == 0:
         raise
+
 
