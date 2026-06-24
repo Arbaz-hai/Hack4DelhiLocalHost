@@ -56,6 +56,5 @@ def predict_fraud(request: FraudRequest):
     data = request.data
 
     if len(data) == 0:
-        raise
 
 
